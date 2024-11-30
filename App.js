@@ -8,7 +8,7 @@ import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import SelectionScreen from './screens/SelectionScreen';
 import AdminPasswordScreen from './screens/AdminPasswordScreen';
-import AdminPage from './screens/AdminPage';
+import AdminTabNavigator from './screens/AdminTabNavigator'; 
 import UserTabNavigator from './screens/UserTabNavigator';
 import TasHadiah from './screens/TasHadiah';
 
@@ -23,7 +23,7 @@ export default function App() {
           <Stack.Screen name="Register" component={RegisterScreen} />
           <Stack.Screen name="Selection" component={SelectionScreen} />
           <Stack.Screen name="AdminPasswordScreen" component={AdminPasswordScreen} />
-          <Stack.Screen name="AdminPage" component={AdminPage} />
+          <Stack.Screen name="AdminPage" component={AdminTabNavigator} />
           <Stack.Screen name="UserPage" component={UserTabNavigator} options={{ title: 'User Page' }} />
           <Stack.Screen name="TasHadiah" component={TasHadiah} />
         </Stack.Navigator>
