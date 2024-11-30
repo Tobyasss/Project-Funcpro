@@ -7,15 +7,18 @@ export default function TabunganSampahScreen() {
   const { tambahTabungan } = useTabungan();  // Destructure tambahTabungan from context
 
   const handleSubmit = () => {
-    if (!berat || isNaN(berat)) {
+    if (!berat || isNaN(berat) || parseFloat(berat) <= 0) {
       alert('Masukkan berat sampah yang valid!');
       return;
     }
 
     // Convert trash weight to points (1 kg = 10 points)
-    tambahTabungan({ jenis: 'Organik', berat: parseFloat(berat) });
+    const poin = parseFloat(berat) * 10;
 
-    alert(`Berhasil menambahkan ${berat} kg sampah organik, dan Anda mendapatkan ${parseFloat(berat) * 10} poin.`);
+    // Add points to tabungan
+    tambahTabungan(poin);
+
+    alert(`Berhasil menambahkan ${berat} kg sampah organik, dan Anda mendapatkan ${poin} poin.`);
     setBerat(''); // Clear the input after submission
   };
 
