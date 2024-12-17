@@ -38,13 +38,11 @@ function LoginScreen({ navigation }) {
                     secureTextEntry
                     placeholderTextColor="#9CA3AF"
                 />
-                <View className='w-full'>
-                    <Button
-                        title="Login"
-                        onPress={handleLogin}
-                        color="#1E40AF"
-                    />
-                </View>
+                <Button
+                    title="Login"
+                    onPress={handleLogin}
+                    color="#1E40AF"
+                />
             </View>
         </SafeAreaView>
     );
