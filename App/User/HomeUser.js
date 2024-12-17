@@ -1,6 +1,6 @@
 import supabase from "../Supabase";
 import { useEffect, useState } from "react";
-import { Alert, Modal, Text, View, FlatList, TextInput, Button, StatusBar } from "react-native";
+import { Alert, Modal, Text, View, FlatList, Button, StatusBar } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 function UserScreen({ user, navigation }) {
@@ -29,6 +29,13 @@ function UserScreen({ user, navigation }) {
     return (
         <SafeAreaView className='flex-1 bg-blue-100'>
             <StatusBar style="auto" backgroundColor='#dbeafe' />
+            <View className="absolute top-10 right-0 ">
+                <Button
+                    title="Logout"
+                    onPress={() => { navigation.navigate("Login") }}
+                    color="#1E40AF"
+                />
+            </View>
             <View className='flex-1 items-center justify-between px-4'>
                 <View className='flex items-center justify-center h-1/3 px-4'>
                     <Text className='text-4xl font-bold text-center mb-4 text-blue-900'>Selamat Datang, {user.username}!</Text>
@@ -56,7 +63,7 @@ function UserScreen({ user, navigation }) {
                             return (
                                 <View className='bg-white p-4 mb-4 rounded-md shadow'>
                                     <Text className='text-lg text-blue-900 font-bold'>Tanggal: {new Date(item.created_at).toLocaleString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</Text>
-                                    <Text className='text-lg text-blue-900'>Setoran Sampah: {item.points} Kg</Text>
+                                    <Text className='text-lg text-blue-900'>Setoran Sampah: {(Number(item.points) / 10).toString()} Kg</Text>
                                     <Text className='text-lg text-blue-900'>Point diterima: {item.points}</Text>
                                 </View>
                             )
@@ -84,7 +91,7 @@ function TukarScreen({ route, navigation }) {
 
     const [reward, setReward] = useState([]);
     const [selectedReward, setSelectedReward] = useState(null);
-    <StatusBar style="auto" backgroundColor='#fff' />
+    <StatusBar style="auto" backgroundColor='#FFF' />
 
     const fetchReward = async () => {
         const { data, error } = await supabase.from('rewards').select('*');
@@ -185,7 +192,7 @@ function TukarScreen({ route, navigation }) {
 function HistoryTukarScreen({ route, navigation }) {
     const [user, setUser] = useState(route.params.user);
     const [history, setHistory] = useState([]);
-    <StatusBar style="auto" backgroundColor='#fff' />
+    <StatusBar style="auto" backgroundColor='#FFF' />
 
     const fetchHistory = async () => {
         const { data, error } = await supabase.from('history').select('*,rewards(name)').eq('user_id', user.id);

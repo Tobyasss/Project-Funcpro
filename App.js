@@ -1,13 +1,17 @@
-import { Text, View, Button, TextInput, Alert, FlatList, Modal } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
+import { Alert } from 'react-native';
 import { useState, useEffect } from 'react';
-import './global.css';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import supabase from './App/Supabase';
 import { UserScreen, HistoryTukarScreen, TukarScreen } from './App/User/HomeUser';
-import LoginScreen from './App/Login';
+import { AdminScreen, ManageRewardScreen, ManageTukarScreen } from './App/Admin/HomeAdmin';
+import './global.css';
+import { LoginScreen, RegisterScreen } from './App/Login';
+import supabase from './App/Supabase';
+
+
+
+
+
 
 const Stack = createNativeStackNavigator();
 
@@ -42,21 +46,6 @@ function HomeScreen({ route, navigation }) {
   );
 }
 
-function AdminScreen({ user, navigation }) {
-  return (
-    <SafeAreaView className='flex-1 bg-blue-100'>
-      <StatusBar style="auto" backgroundColor='#dbeafe' />
-      <View className='flex-1 items-center justify-center px-4'>
-        <Text className='text-4xl font-bold text-center mb-4'>Selamat Datang, {user.username}!</Text>
-        <Button
-          title="Logout"
-          onPress={() => navigation.push('Login')}
-        />
-      </View>
-    </SafeAreaView>
-  )
-
-}
 
 
 
@@ -66,12 +55,15 @@ export default function App() {
       <Stack.Navigator initialRouteName="Login"
         screenOptions={{
           headerShown: false,
-        }}
+        }} w
       >
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Tukar" component={TukarScreen} />
         <Stack.Screen name="History" component={HistoryTukarScreen} />
+        <Stack.Screen name="ManageReward" component={ManageRewardScreen} />
+        <Stack.Screen name="ManageTukar" component={ManageTukarScreen} />
+        <Stack.Screen name="Register" component={RegisterScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
